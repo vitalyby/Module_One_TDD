@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace CalculatorSample.Logic
@@ -15,32 +14,26 @@ namespace CalculatorSample.Logic
 
         public int Add(int x, int y)
         {
-            _logger.Log($"Add {x} + {y}");
+            _logger.Log($"Log Add: {x} + {y}");
             return x + y;
         }
 
         public int Minus(int x, int y)
         {
-            _logger.Log($"Minus {x} - {y}");
+            _logger.Log($"Log Minus: {x} - {y}");
             return x - y;
         }
 
         public int Multiply(int x, int y)
         {
-            _logger.Log($"Multiply {x} * {y}");
+            _logger.Log($"Log Multiply: {x} * {y}");
             return x * y;
         }
 
         public double Divide(int x, int y)
         {
-            _logger.Log($"Divide {x} / {y}");
-            return Math.Round((double) x / (double) y, 2);
-        }
-
-        public double Degree(int x, int y)
-        {
-            _logger.Log($"Degree {x} ^ {y}");
-            return Math.Round(Math.Pow(x, y), 3);
+            _logger.Log($"Log Divide: {x} / {y}");
+            return Math.Round((double)x / (double)y, 2);
         }
     }
 
@@ -48,9 +41,7 @@ namespace CalculatorSample.Logic
     {
         public void Log(string message)
         {
-            File.AppendAllText("d:\\cources\\asp.net\\tdd\\CalculatorSample\\logger.txt", message);
-            Debug.WriteLine("Debagggggggggg " + message);
-            Console.WriteLine("Debagg " + message);
+            File.AppendAllText("log.txt", message);
         }
     }
 

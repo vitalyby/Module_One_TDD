@@ -8,22 +8,72 @@ namespace CalculatorSample.Tests
     [TestFixture]
     public class CalculatorTest
     {
-        [Test]
-        public void TestAddPositive()
+        private Calculator Init()
         {
             var mock = new Mock<ILogger>();
             mock.Setup(l => l.Log(It.IsAny<string>())).Callback<string>(s => Debug.WriteLine(s));
             var calc = new Calculator(mock.Object);
+            return calc;
+        }
+
+        [Test]
+        public void TestAddPositive()
+        {
+            var calc = Init();
             var actual = calc.Add(5, 3);
-            mock.Verify(l => l.Log(It.IsAny<string>()),Times.Exactly(1));
-            Assert.AreEqual(expected:8,actual:actual);
+            Assert.AreEqual(expected: 8, actual: actual);
         }
         [Test]
         public void TestAddNegative()
         {
-            var calc = new Calculator(new Logger());
-            var actual = calc.Add(-5, -4);
-            Assert.AreEqual(expected: -9, actual: actual);
+            var calc = Init();
+            var actual = calc.Add(-5, -3);
+            Assert.AreEqual(expected: -8, actual: actual);
+        }
+
+        [Test]
+        public void TestMinusPositive()
+        {
+            var calc = Init();
+            var actual = calc.Minus(5, 3);
+            Assert.AreEqual(expected: 2, actual: actual);
+        }
+        [Test]
+        public void TestMinusNegative()
+        {
+            var calc = Init();
+            var actual = calc.Minus(-5, -3);
+            Assert.AreEqual(expected: -2, actual: actual);
+        }
+
+        [Test]
+        public void TestMultiplyPositive()
+        {
+            var calc = Init();
+            var actual = calc.Multiply(5, 3);
+            Assert.AreEqual(expected: 15, actual: actual);
+        }
+        [Test]
+        public void TestMultiplyNegative()
+        {
+            var calc = Init();
+            var actual = calc.Multiply(-5, -3);
+            Assert.AreEqual(expected: 15, actual: actual);
+        }
+
+        [Test]
+        public void TestDividePositive()
+        {
+            var calc = Init();
+            var actual = calc.Divide(6, 3);
+            Assert.AreEqual(expected: 2, actual: actual);
+        }
+        [Test]
+        public void TestDivideNegative()
+        {
+            var calc = Init();
+            var actual = calc.Divide(-6, -3);
+            Assert.AreEqual(expected: 2, actual: actual);
         }
     }
 }

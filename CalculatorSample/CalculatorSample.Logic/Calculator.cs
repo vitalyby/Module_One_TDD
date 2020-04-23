@@ -56,20 +56,20 @@ namespace CalculatorSample.Logic
 
             var cnt = 0;
             var minValue = 0;
-            int maxValue = 0;
+            var maxValue = 0;
 
-            for (int i = 1; i < Convert.ToInt32("9".PadRight(y, '9')); i++)
+            for (var curValueIndex = 1; curValueIndex < Convert.ToInt32("9".PadRight(y, '9')); curValueIndex++)
             {
-                int sumValues = 0;
-                int lengthValue = i.ToString().Length;
+                var sumValues = 0;
+                var lengthValue = curValueIndex.ToString().Length;
 
                 //только для чисел, длина которых равна у
                 if (lengthValue == y)
                 {
-                    for (int ii = 0; ii < lengthValue; ii++)
+                    for (var ii = 0; ii < lengthValue; ii++)
                     {
-                        var currValue = Convert.ToInt32(i.ToString().Substring(ii, 1));
-                        sumValues = sumValues + currValue;
+                        var curValue = Convert.ToInt32(curValueIndex.ToString().Substring(ii, 1));
+                        sumValues += curValue;
 
                     }
                 }
@@ -80,12 +80,12 @@ namespace CalculatorSample.Logic
                     cnt++;
                     if (minValue == 0)
                     {
-                        minValue = i;
+                        minValue = curValueIndex;
                     }
 
-                    if (i > maxValue)
+                    if (curValueIndex > maxValue)
                     {
-                        maxValue = i;
+                        maxValue = curValueIndex;
                     }
                 }
             }
